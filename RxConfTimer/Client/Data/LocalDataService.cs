@@ -10,6 +10,7 @@ namespace RxConfTimer.Client.Data
     {
         TryAsync<int> TryInit();
         TryAsync<string> TryAddItems(List<Item> items);
+        TryAsync<List<Item>> TryGetItems();
     }
 
     public class LocalDataService : ILocalDataService
@@ -22,8 +23,12 @@ namespace RxConfTimer.Client.Data
 
         public TryAsync<string> TryAddItems(List<Item> items) => TryAsync(async () => await AddServerItems(items));
 
+        public TryAsync<List<Item>> TryGetItems() => TryAsync(async () => await GetLocalItems());
+
         public async Task<int> Init() => await _database.OpenIndexedDb();
 
         public async Task<string> AddServerItems(List<Item> items) => await _database.AddItems<Item>("items", items);
+
+        public async Task<List<Item>> GetLocalItems() => await _database.GetAll<Item>("items");
     }
 }

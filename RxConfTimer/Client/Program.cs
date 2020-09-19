@@ -1,14 +1,10 @@
-using System;
-using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
 using DnetIndexedDb;
+using Flurl.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using RxConfTimer.Client.Data;
+using RxConfTimer.Client.ViewModels;
 
 namespace RxConfTimer.Client
 {
@@ -19,13 +15,11 @@ namespace RxConfTimer.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddIndexedDbDatabase<ItemDataIndexedDb>(options =>
-            {
-                options.UseDatabase(ItemsDbModelBuilder.GetItemDataModel());
-            });
+            builder.Services.AddIndexedDbDatabase<ItemDataIndexedDb>(options => options.UseDatabase(ItemsDbModelBuilder.GetItemDataModel()));
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            FlurlHttp.Configure(settings => settings.HttpClientFactory = new BlazorHttpClientFactory());
+            builder.Services.AddTransient<ILocalDataService, LocalDataService>();
+            builder.Services.AddTransient<IndexViewModel>();
             await builder.Build().RunAsync();
         }
     }

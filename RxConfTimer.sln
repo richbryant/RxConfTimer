@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxConfTimer.Server", "RxConfTimer\Server\RxConfTimer.Server.csproj", "{6A7057F3-908D-45F7-BB9F-3158A2F48203}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxConfTimer.Server", "RxConfTimer\Server\RxConfTimer.Server.csproj", "{6A7057F3-908D-45F7-BB9F-3158A2F48203}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxConfTimer.Client", "RxConfTimer\Client\RxConfTimer.Client.csproj", "{B27820E8-0A24-48C4-A302-1D015E50BF9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxConfTimer.Client", "RxConfTimer\Client\RxConfTimer.Client.csproj", "{B27820E8-0A24-48C4-A302-1D015E50BF9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxConfTimer.Shared", "RxConfTimer\Shared\RxConfTimer.Shared.csproj", "{7BAAC00D-801C-4A15-B870-6CAF9B847ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxConfTimer.Shared", "RxConfTimer\Shared\RxConfTimer.Shared.csproj", "{7BAAC00D-801C-4A15-B870-6CAF9B847ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

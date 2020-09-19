@@ -1,0 +1,14 @@
+﻿@page "/"
+@inherits ReactiveInjectableComponentBase<IndexViewModel>
+
+<div>
+    <h1>>Current Schedule Item</h1>
+    @if (ViewModel?.Deadline == null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <h2>@ViewModel.Deadline.Title</h2> <h2>@ViewModel.Deadline.ScheduledTime.ToShortTimeString()</h2>
+    }
+</div>
