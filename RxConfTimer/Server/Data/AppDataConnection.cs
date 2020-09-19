@@ -13,6 +13,6 @@ namespace RxConfTimer.Server.Data
             :base(options)
         { }
 
-        public ITable<Item> Items => GetTable<Item>();
+        public ITable<Item> Items => GetTable<Item>().TableName("Items");
     }
 }

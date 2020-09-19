@@ -11,6 +11,7 @@ namespace RxConfTimer.Server.Data
     {
         public TryAsync<List<Item>> TryGetItems();
         public TryAsync<int> TryUpdateItem(Item item);
+        Task<List<Item>> GetItems();
     }
 
     public class ItemsData : IItemsData

@@ -27,16 +27,13 @@ namespace RxConfTimer.Server
         {
             services.AddLinqToDbContext<AppDataConnection>((provider, options) => {
                 options
-                    //will configure the AppDataConnection to use
-                    //sqite with the provided connection string
-                    //there are methods for each supported database
                     .UseSqlServer(Configuration.GetConnectionString("Default"))
-                    //default logging will log everything using the ILoggerFactory configured in the provider
                     .UseDefaultLogging(provider);
             });
+
             services.AddTransient<IItemsData, ItemsData>();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddRazorPages().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
