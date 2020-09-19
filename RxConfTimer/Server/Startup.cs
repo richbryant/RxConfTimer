@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using LinqToDB.AspNet;
+using LinqToDB.AspNet.Logging;
+using RxConfTimer.Server.Data;
 
 namespace RxConfTimer.Server
 {
@@ -22,7 +25,16 @@ namespace RxConfTimer.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddLinqToDbContext<AppDataConnection>((provider, options) => {
+                options
+                    //will configure the AppDataConnection to use
+                    //sqite with the provided connection string
+                    //there are methods for each supported database
+                    .UseSqlServer(Configuration.GetConnectionString("Default"))
+                    //default logging will log everything using the ILoggerFactory configured in the provider
+                    .UseDefaultLogging(provider);
+            });
+            services.AddTransient<IItemsData, ItemsData>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
